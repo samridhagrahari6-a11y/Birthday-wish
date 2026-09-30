@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>Happy Birthday 🎂</title>
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      min-height: 100vh;
+      overflow: hidden;
+      font-family: "Poppins", Arial, sans-serif;
+      background: linear-gradient(135deg, #ff758c, #ff7eb3, #8e54e9);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      color: white;
+    }
+
+    .container {
+      width: 92%;
+      max-width: 600px;
+      text-align: center;
+      position: relative;
+      z-index: 2;
+    }
+
+    .card {
+      padding: 45px 25px;
+      border-radius: 30px;
+      background: rgba(255, 255, 255, 0.15);
+      backdrop-filter: blur(15px);
+      -webkit-backdrop-filter: blur(15px);
+      border: 1px solid rgba(255, 255, 255, 0.3);
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.25);
+      animation: float 3s ease-in-out infinite;
+    }
+
+    .cake {
+      font-size: 75px;
+      animation: bounce 1.5s infinite;
+    }
+
+    h1 {
+      margin-top: 15px;
+      font-size: clamp(2.3rem, 10vw, 4.5rem);
+      line-height: 1.1;
+      text-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
+    }
+
+    .name {
+      color: #fff700;
+      font-weight: 800;
+    }
+
+    .message {
+      margin: 20px auto;
+      max-width: 480px;
+      font-size: clamp(1rem, 4vw, 1.25rem);
+      line-height: 1.7;
+    }
+
+    button {
+      border: none;
+      padding: 15px 30px;
+      border-radius: 50px;
+      background: #fff;
+      color: #e84a8a;
+      font-size: 1rem;
+      font-weight: bold;
+      cursor: pointer;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+      transition: 0.3s ease;
+    }
+
+    button:hover {
+      transform: scale(1.08);
+      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.3);
+    }
+
+    button:active {
+      transform: scale(0.95);
+    }
+
+    .footer {
+      margin-top: 25px;
+      font-size: 0.85rem;
+      opacity: 0.8;
+    }
+
+    /* Confetti */
+    .confetti {
+      position: fixed;
+      width: 10px;
+      height: 10px;
+      top: -20px;
+      z-index: 10;
+      pointer-events: none;
+      animation: fall linear forwards;
+    }
+
+    @keyframes fall {
+      0% {
+        transform: translateY(-20px) rotate(0deg);
+        opacity: 1;
+      }
+
+      100% {
+        transform: translateY(110vh) rotate(720deg);
+        opacity: 0;
+      }
+    }
+
+    @keyframes float {
+      0%, 100% {
+        transform: translateY(0);
+      }
+
+      50% {
+        transform: translateY(-10px);
+      }
+    }
+
+    @keyframes bounce {
+      0%, 100% {
+        transform: translateY(0) rotate(-3deg);
+      }
+
+      50% {
+        transform: translateY(-12px) rotate(3deg);
+      }
+    }
+
+    /* Balloons */
+    .balloon {
+      position: fixed;
+      font-size: 55px;
+      animation: balloonFloat 5s ease-in-out infinite;
+      opacity: 0.8;
+    }
+
+    .balloon1 {
+      left: 5%;
+      top: 15%;
+    }
+
+    .balloon2 {
+      right: 5%;
+      top: 20%;
+      animation-delay: 1s;
+    }
+
+    .balloon3 {
+      left: 10%;
+      bottom: 10%;
+      animation-delay: 2s;
+    }
+
+    .balloon4 {
+      right: 10%;
+      bottom: 8%;
+      animation-delay: 1.5s;
+    }
+
+    @keyframes balloonFloat {
+      0%, 100% {
+        transform: translateY(0) rotate(-5deg);
+      }
+
+      50% {
+        transform: translateY(-25px) rotate(5deg);
+      }
+    }
+
+    @media (max-width: 500px) {
+      .card {
+        padding: 35px 18px;
+      }
+
+      .cake {
+        font-size: 60px;
+      }
+
+      .balloon {
+        font-size: 40px;
+      }
+
+      .message {
+        line-height: 1.6;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- Floating balloons -->
+  <div class="balloon balloon1">🎈</div>
+  <div class="balloon balloon2">🎈</div>
+  <div class="balloon balloon3">🎈</div>
+  <div class="balloon balloon4">🎈</div>
+
+  <div class="container">
+    <div class="card">
+
+      <div class="cake">🎂</div>
+
+      <h1>
+        Happy Birthday<br />
+        <span class="name">Alex! 🎉</span>
+      </h1>
+
+      <p class="message">
+        Wishing you a day filled with happiness, laughter,
+        love, and lots of wonderful memories! 💖
+        <br />
+        May all your dreams come true. ✨
+      </p>
+
+      <button onclick="celebrate()">
+        🎉 Celebrate!
+      </button>
+
+      <div class="footer">
+        Made with ❤️ just for you
+      </div>
+
+    </div>
+  </div>
+
+  <script>
+    const colors = [
+      "#ff4757",
+      "#ffa502",
+      "#2ed573",
+      "#1e90ff",
+      "#a55eea",
+      "#ff6b81",
+      "#fff200"
+    ];
+
+    function createConfetti() {
+      const confetti = document.createElement("div");
+
+      confetti.classList.add("confetti");
+
+      confetti.style.left = Math.random() * 100 + "vw";
+      confetti.style.backgroundColor =
+        colors[Math.floor(Math.random() * colors.length)];
+
+      confetti.style.width = (Math.random() * 8 + 5) + "px";
+      confetti.style.height = (Math.random() * 12 + 5) + "px";
+
+      confetti.style.borderRadius =
+        Math.random() > 0.5 ? "50%" : "2px";
+
+      confetti.style.animationDuration =
+        (Math.random() * 3 + 2) + "s";
+
+      document.body.appendChild(confetti);
+
+      setTimeout(() => {
+        confetti.remove();
+      }, 6000);
+    }
+
+    // Initial confetti
+    function startConfetti() {
+      for (let i = 0; i < 120; i++) {
+        setTimeout(createConfetti, i * 20);
+      }
+    }
+
+    // Celebrate button
+    function celebrate() {
+      for (let i = 0; i < 200; i++) {
+        setTimeout(createConfetti, i * 10);
+      }
+    }
+
+    // Start automatically
+    startConfetti();
+  </script>
+
+</body>
+</html>
